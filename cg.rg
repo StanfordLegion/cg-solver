@@ -1,8 +1,6 @@
 import "regent"
 
 local c = regentlib.c
-require("quiniela_io")
-
 
 fspace MatEl {
   row : int32,

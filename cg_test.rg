@@ -2,7 +2,8 @@ import "regent"
 
 local c = regentlib.c
 
-require("linalg")
+require("cg_io")
+require("cg")
 
 task main()
 	var conf : LAConfig
@@ -10,7 +11,7 @@ task main()
 	conf.p2 = 2
 	conf.tol = 0.1
 	--read A
-	var matf = c.fopen("ignored/mat.bin", "rb")
+	var matf = c.fopen("mat.bin", "rb")
 	conf.dim = read_int(matf, 4)
 	var Am = read_int(matf, 4)
 	conf.m = Am
@@ -40,7 +41,7 @@ task main()
 	end
 	__fence(__execution, __block)
 	--read b
-	var bf = c.fopen("ignored/b.bin", "rb")
+	var bf = c.fopen("b.bin", "rb")
 	var bn = read_int(bf, 4)
 	c.printf("%dx1 b\n",bn)
 	var b = region(ispace(int1d,bn),double)
